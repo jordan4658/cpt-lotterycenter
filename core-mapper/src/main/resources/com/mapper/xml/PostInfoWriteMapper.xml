@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.PostInfoWriteMapper">
+    <select id="countFocusPostNumber" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM circle_post cp LEFT JOIN circle_post_focus cpf ON cp.member_id=cpf.to_uid
+        WHERE cpf.from_uid=#{meId} and cpf.is_delete=0
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[ and cp.create_time  >=  #{startTime}  ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' ">
+            <![CDATA[ and cp.create_time <=  #{endTime}  ]]>
+        </if>
+    </select>
+
+    <select id="countPostReplyMeNumber" resultType="java.lang.Integer">
+        SELECT COUNT(1)
+        FROM circle_post_comments cpc LEFT JOIN app_member am ON cpc.reply_account=am.account
+        WHERE am.id=#{meId}
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[ and cpc.create_time  >=  #{startTime}  ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' ">
+            <![CDATA[ and cpc.create_time <=  #{endTime}  ]]>
+        </if>
+    </select>
+    
+    <select id="getPersonnalSettingList" resultType="java.util.Map">
+        select
+          aps.setting_id as settingId,
+          aps.on_off as onOff,
+          ast.name as settingName,
+          ast.id as id,
+          ast.parent_id as parentId
+        from app_personal_setting aps left join app_setting_type ast on aps.setting_id=ast.id
+        where ast.is_delete=0 AND ast.classify=#{classify} and aps.user_id=#{userId}
+    </select>
+    
+    
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caipiao.live.common.mybatis.mapperext.sg.TensscLotterySgMapperExt">
+    <resultMap id="BaseResultMap" type="com.caipiao.live.common.mybatis.entity.TensscLotterySg">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="issue" jdbcType="CHAR" property="issue"/>
+        <result column="wan" jdbcType="INTEGER" property="wan"/>
+        <result column="qian" jdbcType="INTEGER" property="qian"/>
+        <result column="bai" jdbcType="INTEGER" property="bai"/>
+        <result column="shi" jdbcType="INTEGER" property="shi"/>
+        <result column="ge" jdbcType="INTEGER" property="ge"/>
+        <result column="number" jdbcType="CHAR" property="number"/>
+        <result column="time" jdbcType="CHAR" property="time"/>
+        <result column="ideal_time" jdbcType="CHAR" property="idealTime"/>
+        <result column="open_status" jdbcType="CHAR" property="openStatus"/>
+        <result column="ideal_date" jdbcType="TIMESTAMP" property="idealDate"/>
+        <result column="actual_date" jdbcType="TIMESTAMP" property="actualDate"/>
+    </resultMap>
+
+    <update id="updateByIssue" parameterType="com.caipiao.live.common.mybatis.entity.TensscLotterySg">
+        update lottery_tenssc_lottery_sg
+        set
+        `wan` = #{wan,jdbcType=INTEGER},
+        `qian` = #{qian,jdbcType=INTEGER},
+        `bai` = #{bai,jdbcType=INTEGER},
+        `shi` = #{shi,jdbcType=INTEGER},
+        `ge` = #{ge,jdbcType=INTEGER},
+        `number` = #{number,jdbcType=CHAR},
+        `time` = #{time,jdbcType=CHAR},
+        ideal_time = #{idealTime,jdbcType=CHAR},
+        open_status = #{openStatus,jdbcType=CHAR},
+        ideal_date = #{idealDate,jdbcType=TIMESTAMP},
+        actual_date = #{actualDate,jdbcType=TIMESTAMP}
+        where issue = #{issue,jdbcType=CHAR}
+    </update>
+    <select id="openCountByExample" parameterType="Map" resultType="java.lang.Integer">
+        select count(1) from lottery_tenssc_lottery_sg
+        where open_status = #{openStatus,jdbcType=CHAR}
+               and time like #{paramTime,jdbcType=CHAR}
+         limit 1
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List">
+        replace into lottery_tenssc_lottery_sg (`date`, issue, wan, qian,
+        bai, shi, ge, number,
+        `time`, ideal_time,
+        open_status, ideal_date, actual_date)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.date,jdbcType=CHAR}, #{item.issue,jdbcType=CHAR}, #{item.wan,jdbcType=INTEGER}, #{item.qian,jdbcType=INTEGER},
+            #{item.bai,jdbcType=INTEGER}, #{item.shi,jdbcType=INTEGER}, #{item.ge,jdbcType=INTEGER},
+            #{item.number,jdbcType=CHAR},
+            #{item.time,jdbcType=CHAR}, #{item.idealTime,jdbcType=CHAR},
+            #{item.openStatus,jdbcType=CHAR}, #{item.idealDate,jdbcType=TIMESTAMP}, #{item.actualDate,jdbcType=TIMESTAMP})
+        </foreach>
+    </insert>
+</mapper>

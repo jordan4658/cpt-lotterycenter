@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context id="mall">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 生成的实体类重写hashCode和equals方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <!--生成的实体类重写toString方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="com.custom.mybatis.extend.plugins.GeneratedKeyPlugin"/>
+        <!-- 注意：MysqlSelectOneByExamplePlugin插件必须在MysqlPaginationPlugin插件之前 -->
+        <plugin type="com.custom.mybatis.extend.plugins.MysqlSelectOneByExamplePlugin"/>
+        <!--生成的实体类实现序列化接口-->
+        <plugin type="com.custom.mybatis.extend.plugins.MySerializablePlugin"/>
+        <!-- 生成limit分页属性 -->
+        <plugin type="com.custom.mybatis.extend.plugins.MysqlPaginationPlugin"/>
+
+        <!--注解-->
+        <commentGenerator type="com.custom.mybatis.extend.generator.DbCommentGenerator"/>
+
+        <!--心水库打开以下注释，注释彩票库配置，不要改连接，配置！！！容易出错！！-->
+        <!--<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/caipiaoxs?characterEncoding=utf8&amp;useSSL=false"
+                        userId="root" password="root"/>
+        <javaTypeResolver>
+            <property name="forceBoolean" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetProject="src/main/java" targetPackage="com.mapper.domain"/>
+        <sqlMapGenerator targetProject="src/main/resources" targetPackage="com.mapper.xml2"/>
+        <javaClientGenerator targetProject="src/main/java" targetPackage="com.mapperxs" type="XMLMAPPER"/>-->
+        <!--心水库配置结束-->
+
+        <!-- Oracle 数据库连接的信息 -->
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:xxx"
+            userId="xxx" password="xxx"> </jdbcConnection> -->
+
+        <!--彩票库打开以下注释，注释心水票库配置，不要改连接，配置！！！容易出错！！-->
+        <!--<jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
+                        connectionURL="jdbc:mysql://cptuatdb.cptuat.net:3306/caipiao?characterEncoding=utf8&amp;useSSL=false"
+                        userId="root" password="bJxacW8Mwjte4Fc5"/>-->
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/live?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;useSSL=false"
+                        userId="root" password="root"/>
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://db.liveuat.com:3306/live?serverTimezone=Hongkong&amp;characterEncoding=utf8&amp;useSSL=false"
+                        userId="kf_live" password="gOwVRIt3K2WExe6O"/>-->
+        <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                         connectionURL="jdbc:mysql://db.liveuat.com:3306/live?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;useSSL=false"
+                         userId="kf_live" password="gOwVRIt3K2WExe6O"/>-
+ -->
+        <!--<javaTypeResolver>
+            <property name="forceBoolean" value="false"/>
+        </javaTypeResolver>-->
+        <javaTypeResolver type="com.custom.mybatis.extend.plugins.JavaTypeResolver">
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             -->
+            <property name="forceBoolean" value="false"/>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetProject="src/main/java" targetPackage="com.caipiao.live.common.mybatis.entity"/>
+        <sqlMapGenerator targetProject="src/main/resources" targetPackage="mapper.xml"/>
+        <javaClientGenerator targetProject="src/main/java" targetPackage="com.caipiao.live.common.mybatis.mapper" type="XMLMAPPER"/>
+
+        <!--彩票库配置结束-->
+        <!-- 进入xxx-mapper工程使用命令：mvn mybatis-generator:generate -->
+        <!-- 使用时填写具体的表名 -->
+        <!--<table tableName="ad_basic"/>
+        <table tableName="ad_photo"/>
+        <table tableName="ad_site"/>
+        <table tableName="ae_bet_order"/>
+        <table tableName="ae_game"/>
+        <table tableName="ae_room"/>
+        <table tableName="ag_bet_order"/>
+        <table tableName="ag_game"/>
+        <table tableName="ag_pay_type"/>
+        <table tableName="ag_platform"/>
+        <table tableName="ag_round"/>
+        <table tableName="ag_transfer_log"/>
+        <table tableName="amlhc_lottery_sg"/>
+        <table tableName="app"/>
+        <table tableName="app_personal_setting"/>
+        <table tableName="app_vest_bag"/>
+        <table tableName="ausact_lottery_sg"/>
+        <table tableName="auspks_lottery_sg"/>
+        <table tableName="ausssc_lottery_sg"/>
+        <table tableName="azks_lottery_sg"/>
+
+        <table tableName="bas_anchoronline"/>
+        <table tableName="bas_anchorroom"/>
+        <table tableName="bas_article"/>
+        <table tableName="bas_channel"/>
+        <table tableName="bas_comment"/>
+        <table tableName="bas_favorites"/>
+        <table tableName="bas_forbid"/>
+        <table tableName="bas_gift"/>
+        <table tableName="bas_guard"/>
+        <table tableName="bas_investors"/>
+        <table tableName="bas_online"/>
+        <table tableName="bas_praise"/>
+        <table tableName="bas_reward"/>
+        <table tableName="bas_talk"/>
+        <table tableName="bas_video"/>
+        <table tableName="bd_bannerpicinfo"/>
+        <table tableName="bd_bannerseat"/>
+        <table tableName="bd_user"/>
+        <table tableName="bet_restrict"/>
+        <table tableName="bjpks_lottery_sg"/>
+        <table tableName="bonus"/>
+        <table tableName="bonus_category"/>
+
+        <table tableName="chess_exchange"/>
+        <table tableName="chess_kindinfo"/>
+        <table tableName="chess_order"/>
+        <table tableName="chess_userset"/>
+        <table tableName="circle_post"/>
+        <table tableName="circle_post_comments"/>
+        <table tableName="circle_post_focus"/>
+        <table tableName="circle_post_message_record"/>
+        <table tableName="circle_post_praise_record"/>
+        <table tableName="circle_post_report"/>
+        <table tableName="circle_post_report_type"/>
+        <table tableName="circle_post_shield"/>
+        <table tableName="circle_rules"/>
+        <table tableName="cp_activity_data"/>
+        <table tableName="cp_activity_info"/>
+        <table tableName="cpt_open_member"/>
+        <table tableName="cqssc_lottery_sg"/>
+
+        <table tableName="dzks_lottery_sg"/>
+        <table tableName="dzpcegg_lottery_sg"/>
+        <table tableName="dzxyft_lottery_sg"/>
+
+        <table tableName="es_bet_order"/>
+
+        <table tableName="fc3d_lottery_sg"/>
+        <table tableName="fc7lc_lottery_sg"/>
+        <table tableName="fcssq_lottery_sg"/>
+        <table tableName="first_recharge_gift"/>
+        <table tableName="first_recharge_gift_back"/>
+        <table tableName="fivebjpks_lottery_sg"/>
+        <table tableName="fivelhc_lottery_sg"/>
+        <table tableName="fivessc_lottery_sg"/>
+        <table tableName="ftjspks_lottery_sg"/>
+        <table tableName="ftjsssc_lottery_sg"/>
+        <table tableName="ftxyft_lottery_sg"/>
+
+        <table tableName="god_plan"/>
+        <table tableName="god_plan_issue"/>
+        <table tableName="god_plan_lottery_category"/>
+        <table tableName="god_plan_reward"/>
+        <table tableName="god_plan_series_play"/>
+        <table tableName="gold_give_group"/>
+
+        <table tableName="inf_push"/>
+        <table tableName="inf_sysnotice"/>
+        <table tableName="inf_sysremindinfo"/>
+
+        <table tableName="jsbjpks_lottery_sg"/>
+        <table tableName="jsssc_lottery_sg"/>
+
+        <table tableName="kill_config"/>
+        <table tableName="ky_bet_order"/>
+        <table tableName="ky_kind"/>
+        <table tableName="ky_server"/>
+
+        <table tableName="lhc_god_type"/>
+        <table tableName="lhc_handicap"/>
+        <table tableName="lhc_lottery_sg"/>
+        <table tableName="lhc_user"/>
+
+        <table tableName="lot_easyselect"/>
+        <table tableName="lot_kindinfo"/>
+        <table tableName="lot_oddsset"/>
+        <table tableName="lot_ruleinfo"/>
+        <table tableName="lot_sschistory"/>
+        <table tableName="lot_ssclucky"/>
+        <table tableName="lot_sscorder"/>
+        <table tableName="lottery"/>
+        <table tableName="lottery_category"/>
+        <table tableName="lottery_favorite"/>
+        <table tableName="lottery_play"/>
+        <table tableName="lottery_play_odds"/>
+        <table tableName="lottery_play_setting"/>
+
+        <table tableName="mem_bankaccount"/>
+        <table tableName="mem_baseinfo"/>
+        <table tableName="mem_certification"/>
+        <table tableName="mem_faceset"/>
+        <table tableName="mem_family"/>
+        <table tableName="mem_familymem"/>
+        <table tableName="mem_follow"/>
+        <table tableName="mem_goldchange"/>
+        <table tableName="mem_hotsearch"/>
+        <table tableName="mem_level"/>
+        <table tableName="mem_login"/>
+        <table tableName="mem_relationship"/>
+        <table tableName="mem_signin"/>
+        <table tableName="member_device_calc"/>
+        <table tableName="member_online_calc"/>
+        <table tableName="member_youke_calc"/>
+
+        <table tableName="onelhc_lottery_sg"/>
+        <table tableName="operate_sensitive_log"/>
+        <table tableName="order_append_record"/>
+        <table tableName="order_bet_record"/>
+        <table tableName="order_record"/>
+        <table tableName="org_adminprivilege"/>
+
+        <table tableName="pcegg_lottery_sg"/>
+        <table tableName="platform_goldchange"/>
+
+        <table tableName="quick_sschistory"/>
+        <table tableName="quick_ssclucky"/>
+        <table tableName="quick_sscorder"/>
+
+        <table tableName="return_lottery_set"/>
+        <table tableName="return_third_set"/>
+        <table tableName="return_water_set"/>
+
+        <table tableName="sys_agentinfo"/>
+        <table tableName="sys_anchortenlive"/>
+        <table tableName="sys_app_info"/>
+        <table tableName="sys_appface"/>
+        <table tableName="sys_bduserrole"/>
+        <table tableName="sys_busparameter"/>
+        <table tableName="sys_cdn"/>
+        <table tableName="sys_countryareacode"/>
+        <table tableName="sys_errorlog"/>
+        <table tableName="sys_feedback"/>
+        <table tableName="sys_funcinterface"/>
+        <table tableName="sys_functionorg"/>
+        <table tableName="sys_infolog"/>
+        <table tableName="sys_liveserver"/>
+        <table tableName="sys_operdatalog"/>
+        <table tableName="sys_parameter"/>
+        <table tableName="sys_payaccount"/>
+        <table tableName="sys_payprovider"/>
+        <table tableName="sys_payset"/>
+        <table tableName="sys_reffuncinitfc"/>
+        <table tableName="sys_rolefunc"/>
+        <table tableName="sys_roleinfo"/>
+        <table tableName="sys_shortmsg"/>
+        <table tableName="sys_tags"/>
+        <table tableName="sys_tenliveserver"/>
+        <table tableName="sys_threepayset"/>
+        <table tableName="sys_whitelist"/>
+
+        <table tableName="tc7xc_lottery_sg"/>
+        <table tableName="tcdlt_lottery_sg"/>
+        <table tableName="tcpls_lottery_sg"/>
+        <table tableName="tcplw_lottery_sg"/>
+        <table tableName="tenbjpks_lottery_sg"/>
+        <table tableName="tenssc_lottery_sg"/>
+        <table tableName="tjssc_lottery_sg"/>
+        <table tableName="tra_agentclearing"/>
+        <table tableName="tra_anchor"/>
+        <table tableName="tra_anchortracking"/>
+        <table tableName="tra_applyaudit"/>
+        <table tableName="tra_applycash"/>
+        <table tableName="tra_orderinfom"/>
+        <table tableName="tra_ordertracking"/>
+        <table tableName="tra_paymentinfo"/>
+        <table tableName="tra_rechargeaudit"/>
+        <table tableName="tra_rechargemeal"/>
+        <table tableName="tra_sscprize"/>
+        <table tableName="txffc_lottery_sg"/>
+
+        <table tableName="xjplhc_lottery_sg"/>
+        <table tableName="xjssc_lottery_sg"/>
+        <table tableName="xyft_lottery_sg"/>-->
+        <table tableName="sys_feedback"/>
+    </context>
+</generatorConfiguration>

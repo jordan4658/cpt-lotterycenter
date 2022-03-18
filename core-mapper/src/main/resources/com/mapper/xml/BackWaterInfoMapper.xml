@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.BackWaterInfoMapper">
+    <select id="getValidUsers" resultType="com.mapper.domain.AppMember">
+        select
+            obr.user_id as id,
+            am.account as account,
+            am.vip_id AS vipId,
+            am.balance as balance,
+            IFNULL(SUM(obr.bet_amount), 0) as betAmount
+        FROM order_bet_record obr LEFT JOIN app_member am ON obr.user_id = am.id
+        WHERE obr.is_delete=0 AND obr.tb_status in('WIN', 'NO_WIN', 'HE')
+        GROUP BY obr.user_id HAVING betAmount>0
+    </select>
+
+    <select id="getValidBetAmountByUserIds" resultType="java.math.BigDecimal">
+        select
+          IFNULL(SUM(bet_amount), 0) as betAmount
+        FROM order_bet_record
+        where is_delete=0 AND tb_status in('WIN', 'NO_WIN', 'HE') and user_id in
+        <foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[ and create_time  >=  #{startTime}  ]]>
+        </if>
+    </select>
+
+    <select id="getTwoCengUsersByOneCengUserIds" resultType="java.lang.Integer">
+        select
+          id
+        from app_member
+        where freeze_status = 0 and deleted = 0 and share_account in
+        (
+            select account from app_member where id in
+            <foreach collection="idList" index="index" item="item" open="(" separator="," close=")">
+                #{item}
+            </foreach>
+        )
+
+    </select>
+</mapper>

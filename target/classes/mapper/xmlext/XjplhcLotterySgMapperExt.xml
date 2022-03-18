@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caipiao.live.common.mybatis.mapperext.sg.XjplhcLotterySgMapperExt">
+    <resultMap id="BaseResultMap" type="com.caipiao.live.common.mybatis.entity.XjplhcLotterySg">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="issue" jdbcType="CHAR" property="issue"/>
+        <result column="number" jdbcType="CHAR" property="number"/>
+        <result column="time" jdbcType="CHAR" property="time"/>
+        <result column="ideal_time" jdbcType="CHAR" property="idealTime"/>
+        <result column="open_status" jdbcType="CHAR" property="openStatus"/>
+    </resultMap>
+
+    <update id="updateByIssue" parameterType="com.caipiao.live.common.mybatis.entity.XjplhcLotterySg">
+        update lottery_xjplhc_lottery_sg
+        set
+        `number` = #{number,jdbcType=CHAR},
+        `time` = #{time,jdbcType=CHAR},
+        ideal_time = #{idealTime,jdbcType=CHAR},
+        open_status = #{openStatus,jdbcType=CHAR}
+        where issue = #{issue,jdbcType=CHAR}
+    </update>
+    <select id="openCountByExample" parameterType="Map" resultType="java.lang.Integer">
+        select count(1) from lottery_xjplhc_lottery_sg
+        where open_status = #{openStatus,jdbcType=CHAR}
+               and time like #{paramTime,jdbcType=CHAR}
+         limit 1
+    </select>
+    <insert id="insertBatch" parameterType="java.util.List">
+        replace into lottery_xjplhc_lottery_sg (issue, number,
+        `time`, ideal_time,
+        open_status)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (#{item.issue,jdbcType=CHAR},
+            #{item.number,jdbcType=CHAR},
+            #{item.time,jdbcType=CHAR}, #{item.idealTime,jdbcType=CHAR},
+            #{item.openStatus,jdbcType=CHAR})
+        </foreach>
+    </insert>
+</mapper>

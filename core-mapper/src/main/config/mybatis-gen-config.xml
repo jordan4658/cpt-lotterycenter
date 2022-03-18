@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <context id="mall">
+        <property name="autoDelimitKeywords" value="true" />
+        <property name="beginningDelimiter" value="`" />
+        <property name="endingDelimiter" value="`" />
+        <property name="javaFileEncoding" value="UTF-8" />
+
+
+        <!-- 生成的实体类重写hashCode和equals方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin" />
+        <!--生成的实体类重写toString方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin" />
+        <plugin type="com.custom.mybatis.extend.plugins.GeneratedKeyPlugin" />
+        <!-- 注意：MysqlSelectOneByExamplePlugin插件必须在MysqlPaginationPlugin插件之前 -->
+        <plugin type="com.custom.mybatis.extend.plugins.MysqlSelectOneByExamplePlugin" />
+        <!--生成的实体类实现序列化接口-->
+        <plugin type="com.custom.mybatis.extend.plugins.MySerializablePlugin" />
+        <!-- 生成limit分页属性 -->
+        <plugin type="com.custom.mybatis.extend.plugins.MysqlPaginationPlugin" />
+
+        <commentGenerator type="com.custom.mybatis.extend.generator.DbCommentGenerator" />
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/caipiao?characterEncoding=utf8&amp;useSSL=false"
+                        userId="root" password="root" />
+
+        <!--<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/caipiao?characterEncoding=utf8&amp;useSSL=false"
+                        userId="root" password="root" />-->
+
+        <!-- Oracle 数据库连接的信息 -->
+        <!-- <jdbcConnection driverClass="oracle.jdbc.OracleDriver" connectionURL="jdbc:oracle:thin:@127.0.0.1:1521:xxx"
+            userId="xxx" password="xxx"> </jdbcConnection> -->
+
+        <javaTypeResolver>
+            <property name="forceBoolean" value="false" />
+        </javaTypeResolver>
+
+        <javaModelGenerator targetProject="src/main/java" targetPackage="com.mapper.domain" />
+        <sqlMapGenerator targetProject="src/main/resources" targetPackage="com.mapper.xml" />
+        <javaClientGenerator targetProject="src/main/java" targetPackage="com.mapper" type="XMLMAPPER" />
+
+        <!-- 进入xxx-mapper工程使用命令：mvn mybatis-generator:generate -->
+        <!-- 生成全部表映射 -->
+        <!--<table schema="" tableName="operate_log" />-->
+        <!--<table schema="" tableName="app_member" />-->
+
+        <!--<table schema="" tableName="operater" />-->
+       <!--<table schema="" tableName="operater_role" />-->
+        <!--<table schema="" tableName="role_resource" />-->
+        <!--<table schema="" tableName="operate_log" />-->
+
+        <!--<table schema="" tableName="member_login_log" />-->
+        <!--<table schema="" tableName="advice_feedback" />-->
+        <!--<table schema="" tableName="member_submit_txt" />-->
+        <!--<table schema="" tableName="member_chat_record" />-->
+        <!--<table schema="" tableName="order_export_record" />-->
+        <!--<table schema="" tableName="member_message_export_record" />-->
+        <!--<table schema="" tableName="api_interface_log" />-->
+
+        <!--<table schema="" tableName="repeal_startlotto" />-->
+        <!--<table schema="" tableName="repeal_bet_order" />-->
+        <!--<table schema="" tableName="open_repeal_order" />-->
+
+        <!--<table schema="" tableName="no_lottery_record" />-->
+        <!--<table schema="" tableName="gather_failure_record" />-->
+        <!--<table schema="" tableName="number_abnormal_record" />-->
+
+        <!--<table schema="" tableName="manual_startlotto_record" />-->
+
+        <!--<table schema="" tableName="app_notice" />-->
+        <!--<table schema="" tableName="app_notice_category" />-->
+        <!--<table schema="" tableName="instation_message" />-->
+        <!--<table schema="" tableName="real_time_message" />-->
+
+        <!--<table schema="" tableName="vip_grade" />-->
+        <!--<table schema="" tableName="activity" />-->
+        <!--<table schema="" tableName="popup_activity" />-->
+        <!--<table schema="" tableName="slideshow" />-->
+
+        <!--<table schema="" tableName="system_info" />-->
+
+        <!--<table schema="" tableName="app" />-->
+        <!--<table schema="" tableName="app_version" />-->
+
+        <!--<table schema="" tableName="role_role_resource" />-->
+
+        <!--<table schema="" tableName="bbin_freeze" />-->
+        <!--<table schema="" tableName="return_message" />-->
+        <!--<table schema="" tableName="member_instation_message" />-->
+        <!--<table schema="" tableName="member_real_time_message" />-->
+
+        <!--<table schema="" tableName="sms_captcha" />-->
+        <!--<table schema="" tableName="bonus_category" />-->
+        <!--<table schema="" tableName="lottery" />-->
+
+        <!--<table schema="" tableName="lhc_lottery_sg" />-->
+        <!--<table schema="" tableName="cqssc_lottery_sg" />-->
+        <!--<table tableName="cqssc_recommend" />-->
+        <!--<table schema="" tableName="bjpks_lottery_sg" />-->
+        <!--<table schema="" tableName="pcegg_lottery_sg" />-->
+        <!--<table schema="" tableName="pcegg_recommend" />-->
+
+        <!--<table schema="" tableName="bjpks_count_sgdx" />-->
+        <!--<table schema="" tableName="bjpks_count_sgds" />-->
+        <!--<table schema="" tableName="bjpks_count_sglh" />-->
+        <!--<table schema="" tableName="bjpks_recommend" />-->
+        <!--<table schema="" tableName="lhc_photo_category" />-->
+        <!--<table schema="" tableName="lhc_handicap" />-->
+        <!--<table schema="" tableName="lhc_photo" />-->
+        <!--<table tableName="bjpks_recommend" />-->
+        <!--<table schema="" tableName="cqssc_kill_number" />-->
+
+        <!--<table schema="" tableName="support_bank" />-->
+        <!--<table schema="" tableName="send_down_way" />-->
+        <!--<table schema="" tableName="gift_money_record" />-->
+        <!--<table schema="" tableName="first_recharge_backwater" />-->
+        <!--<table schema="" tableName="first_recharge_gift_back" />-->
+        <!--<table schema="" tableName="first_recharge_gift" />-->
+        <!--<table schema="" tableName="top_up_card" />-->
+
+        <!--<table schema="" tableName="redis_setting" />-->
+        <!--<table schema="" tableName="bonus" />-->
+        <!--<table schema="" tableName="six_position" />-->
+        <!--<table schema="" tableName="ssc_play_setting" />-->
+        <!--<table schema="" tableName="lhc_play_setting" />-->
+        <!--<table schema="" tableName="six_position" />-->
+
+        <!--<table schema="" tableName="bjpks_kill_number" />-->
+        <!--<table schema="" tableName="lhc_kill_number" />-->
+
+        <!--<table schema="" tableName="member_withdraw_deposit" />-->
+        <!--<table schema="" tableName="member_top_up" />-->
+        <!--<table schema="" tableName="member_activity" />-->
+        <!--<table schema="" tableName="member_banlance_change" />-->
+
+        <!-- <table tableName="lottery_category"/> -->
+        <!-- <table tableName="lottery_play"/> -->
+        <!--<table tableName="lottery_play_setting"/>-->
+        <!--<table tableName="lottery_play_odds"/>-->
+        <table tableName="lottery"/>
+        <!-- <table tableName="ftjsssc_kill_number"/>
+        <table tableName="ftjsssc_recommend"/>
+        <table tableName="ftxyft_count_sgds"/>
+        <table tableName="ftxyft_count_sgdx"/>
+        <table tableName="ftxyft_count_sglh"/>
+        <table tableName="ftxyft_kill_number"/>
+        <table tableName="ftxyft_recommend"/>
+        <table tableName="ftftjspks_count_sglh"/>
+        <table tableName="ftjspks_count_sgds"/>
+        <table tableName="ftjspks_count_sgdx"/>
+        <table tableName="ftjspks_kill_number"/>
+        <table tableName="ftjspks_recommend"/> -->
+        <!--<table tableName="bonus_category"/>-->
+        <!--<table tableName="bonus"/>-->
+        <!--<table tableName="order_record"/>-->
+        <!--<table tableName="order_bet_record"/>-->
+
+        <!--<table tableName="ad_site"/>-->
+        <!--<table tableName="ad_basic"/>-->
+        <!--<table tableName="ad_photo"/>-->
+
+        <!--<table tableName="lhc_xs_referrer"/>-->
+        <!--<table tableName="lhc_xs_recommend"/>-->
+        <!--<table tableName="lhc_xs_recommend_content"/>-->
+
+        <!--<table tableName="app_member"/>-->
+        <!--<table tableName="member_balance_change"/>-->
+<!--
+        <table tableName="xjssc_kill_number"/>
+        <table tableName="xjssc_lottery_sg"/>
+        <table tableName="xjssc_recommend"/>
+-->
+
+<!--
+        <table tableName="xyft_count_sgds"/>
+        <table tableName="xyft_count_sgdx"/>
+        <table tableName="xyft_count_sglh"/>
+        <table tableName="xyft_kill_number"/>
+        <table tableName="xyft_lottery_sg"/>
+        <table tableName="xyft_recommend"/>
+-->
+<!--
+        <table tableName="txffc_lottery_sg"/>
+        <table tableName="txffc_recommend"/>
+        <table tableName="txffc_kill_number"/>
+-->
+        <!--<table tableName="order_append_record"/>-->
+
+        <!--<table tableName="member_promotion"/>-->
+
+        <!--<table tableName="problem_complaint_resource"/>-->
+
+        <!--<table tableName="lottery_result"/>-->
+        <!--<table tableName="lottery_open_error"/>-->
+        <!-- <table tableName="app"/>-->
+
+        <!-- <table schema="" tableName="domain_name"/> -->
+        
+<!--         <table tableName="lhc_god_ranking"/>
+ -->
+        <!-- <table tableName="cqssc_lottery_sg"/> -->
+
+    </context>
+</generatorConfiguration>

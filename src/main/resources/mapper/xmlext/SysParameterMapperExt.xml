@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caipiao.live.common.mybatis.mapperext.sys.SysParameterMapperExt">
+    <resultMap id="BaseResultMap" type="com.caipiao.live.common.mybatis.entity.SysParameter">
+        <id column="param_id" jdbcType="BIGINT" property="paramId" />
+        <result column="param_code" jdbcType="VARCHAR" property="paramCode" />
+        <result column="param_name" jdbcType="VARCHAR" property="paramName" />
+        <result column="remark" jdbcType="VARCHAR" property="remark"/>
+        <result column="param_value" jdbcType="VARCHAR" property="paramValue" />
+        <result column="sort_by" jdbcType="INTEGER" property="sortBy" />
+        <result column="param_status" jdbcType="INTEGER" property="paramStatus" />
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+        <result column="create_user" jdbcType="VARCHAR" property="createUser"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="merchant_code" jdbcType="VARCHAR" property="merchantCode" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    param_id, param_code, param_name, remark, param_value,sort_by, param_status, is_delete, create_user, create_time, update_user, update_time,merchant_code
+    </sql>
+
+    <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_parameter
+        where param_code = #{sysparamcode,jdbcType=VARCHAR}
+        and is_delete = b'0'
+        limit 1
+    </select>
+
+    <select id="getList" parameterType="com.caipiao.live.common.mybatis.entity.SysParameter" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_parameter s
+        where
+        s.is_delete = b'0'
+        <if test="paramCode != null and paramCode !=''">
+            and s.param_code LIKE CONCAT('%',#{paramCode,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="paramName != null and paramName !=''">
+            and s.param_name LIKE CONCAT('%',#{paramName,jdbcType=VARCHAR},'%')
+        </if>
+        order by s.create_time desc
+    </select>
+
+    <select id="getRepeat" parameterType="com.caipiao.live.common.mybatis.entity.SysParameter" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_parameter s
+        where
+        param_code = #{paramCode,jdbcType=VARCHAR}
+        and is_delete = b'0'
+        <if test="sysparamid != null">
+            and param_id != #{paramId,jdbcType=TIMESTAMP}
+        </if>
+        limit 1
+    </select>
+
+    <select id="queryByCodeNames" parameterType="java.util.List" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_parameter s
+        where
+        param_code in
+        <foreach collection="codeNames" item="code" open="(" close=")" separator=",">
+            #{code}
+        </foreach>
+        and is_delete = b'0';
+    </select>
+
+    <select id="getSameCodeParamList" resultType="java.lang.String">
+        select
+        s.param_value
+        from sys_parameter s
+        where
+        s.is_delete = b'0'
+        and  s.param_code LIKE CONCAT('%',#{sysparamcode,jdbcType=VARCHAR},'%')
+        order by s.sort_by ${sort}
+
+    </select>
+
+</mapper>

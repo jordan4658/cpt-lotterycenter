@@ -1,0 +1,80 @@
+package com.caipiao.core.library.vo.startlotto;
+
+/**
+ * @author lzy
+ * @create 2018-06-06 15:37
+ **/
+public class RepealStartlottoVO {
+
+    private Integer id;
+
+    /**
+     * 说明: 彩种名称
+     */
+    private String lotteryName;
+
+    /**
+     * 说明: 期号
+     */
+    private String issue;
+
+    /**
+     * 说明: 订单号
+     */
+    private String orderCode;
+
+    private String createTime;
+
+    /**
+     * 说明: 操作员账号
+     */
+    private String operater;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getLotteryName() {
+        return lotteryName;
+    }
+
+    public void setLotteryName(String lotteryName) {
+        this.lotteryName = lotteryName;
+    }
+
+    public String getIssue() {
+        return issue;
+    }
+
+    public void setIssue(String issue) {
+        this.issue = issue;
+    }
+
+    public String getOrderCode() {
+        return orderCode;
+    }
+
+    public void setOrderCode(String orderCode) {
+        this.orderCode = orderCode;
+    }
+
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    public String getOperater() {
+        return operater;
+    }
+
+    public void setOperater(String operater) {
+        this.operater = operater;
+    }
+}

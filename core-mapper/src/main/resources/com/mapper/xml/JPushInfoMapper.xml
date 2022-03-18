@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.JPushInfoMapper">
+    <select id="getPushSettingOnUser" resultType="java.lang.Integer">
+        select
+          aps.user_id
+        from app_personal_setting aps left join app_setting_type ast on ast.id=aps.setting_id
+        where ast.classify='push' and ast.tag=#{tag} and aps.on_off=1
+    </select>
+
+    <select id="winPushIsOff" resultType="java.lang.Integer">
+        select
+          count(1)
+        from app_personal_setting aps left join app_setting_type ast on ast.id=aps.setting_id
+        where ast.classify='push' and ast.tag=#{tag} and aps.on_off=0 AND aps.user_id=#{userId}
+    </select>
+</mapper>

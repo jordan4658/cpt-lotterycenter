@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+    <!--此配置文件为主播端mybatis生成配置-->
+    <context id="mall">
+        <property name="autoDelimitKeywords" value="true"/>
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+        <property name="javaFileEncoding" value="UTF-8"/>
+
+        <!-- 生成的实体类重写hashCode和equals方法 -->
+        <plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"/>
+        <!--生成的实体类重写toString方法-->
+        <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
+        <plugin type="com.custom.mybatis.extend.plugins.GeneratedKeyPlugin"/>
+        <!-- 注意：MysqlSelectOneByExamplePlugin插件必须在MysqlPaginationPlugin插件之前 -->
+        <plugin type="com.custom.mybatis.extend.plugins.MysqlSelectOneByExamplePlugin"/>
+        <!--生成的实体类实现序列化接口-->
+        <plugin type="com.custom.mybatis.extend.plugins.MySerializablePlugin"/>
+        <!-- 生成limit分页属性 -->
+        <plugin type="com.custom.mybatis.extend.plugins.MysqlPaginationPlugin"/>
+
+        <!--注解-->
+        <commentGenerator type="com.custom.mybatis.extend.generator.DbCommentGenerator"/>
+
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/anchor?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;useSSL=false"
+                        userId="root" password="root"/>
+       <!-- <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://db.liveuat.com:3306/live?serverTimezone=Asia/Shanghai&amp;characterEncoding=utf8&amp;useSSL=false"
+                        userId="kf_live" password="gOwVRIt3K2WExe6O"/>-->
+        <!--<javaTypeResolver>
+            <property name="forceBoolean" value="false"/>
+        </javaTypeResolver>-->
+        <javaTypeResolver type="com.custom.mybatis.extend.plugins.JavaTypeResolver">
+            <!--
+                true：使用BigDecimal对应DECIMAL和 NUMERIC数据类型
+                false：默认,
+                    scale>0;length>18：使用BigDecimal;
+                    scale=0;length[10,18]：使用Long；
+                    scale=0;length[5,9]：使用Integer；
+                    scale=0;length<5：使用Short；
+             -->
+            <property name="forceBoolean" value="false"/>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <javaModelGenerator targetProject="src/main/java" targetPackage="com.caipiao.live.common.mybatis.entity.anchor"/>
+
+        <!--mapper xml 文件路径，对应的mapper ext文件为mapper.anchorxmlext-->
+        <sqlMapGenerator targetProject="src/main/resources" targetPackage="mapper.anchorxml"/>
+        <javaClientGenerator targetProject="src/main/java" targetPackage="com.caipiao.live.common.mybatis.mapper.anchor" type="XMLMAPPER"/>
+
+        <!--彩票库配置结束-->
+        <!-- 进入xxx-mapper工程使用命令：mvn mybatis-generator:generate -->
+        <!-- 使用时填写具体的表名 -->
+        <table tableName="bas_anchoronline"/>
+        <table tableName="bas_anchorroom"/>
+        <table tableName="bas_channel"/>
+        <table tableName="bas_comment"/>
+        <table tableName="bas_favorites"/>
+        <table tableName="bas_forbid"/>
+        <table tableName="bas_gift"/>
+        <table tableName="bas_guard"/>
+        <table tableName="bas_online"/>
+        <table tableName="bas_praise"/>
+        <table tableName="bas_reward"/>
+        <table tableName="bas_talk"/>
+
+        <table tableName="anchor_mem_bankaccount"/>
+        <table tableName="anchor_mem_baseinfo"/>
+        <table tableName="anchor_mem_certification"/>
+        <table tableName="anchor_mem_faceset"/>
+        <table tableName="anchor_mem_family"/>
+        <table tableName="anchor_mem_familymem"/>
+        <table tableName="anchor_mem_follow"/>
+        <table tableName="anchor_mem_hotsearch"/>
+        <table tableName="anchor_mem_login"/>
+        <table tableName="anchor_mem_relationship"/>
+        <table tableName="anchor_mem_signin"/>
+        <table tableName="anchor_sys_busparameter"/>
+        <table tableName="anchor_sys_infolog"/>
+        <table tableName="anchor_sys_operdatalog"/>
+        <table tableName="anchor_sys_parameter"/>
+        <table tableName="anchor_sys_shortmsg"/>
+        <table tableName="anchor_sys_tenliveserver"/>
+        <table tableName="anchor_user_invite_code"/>
+        <table tableName="anchor_user_unique_code"/>
+    </context>
+</generatorConfiguration>

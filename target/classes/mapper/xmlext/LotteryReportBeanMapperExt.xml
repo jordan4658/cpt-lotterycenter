@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caipiao.live.common.mybatis.mapperbean.provider.LotteryReportBeanMapper">
+
+    <select id="getLotteryReportDetail"
+            resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+          SELECT
+                t1.lottery_id AS lotteryId,
+                t1.issue,
+                t1.bet_amount AS betAmount,
+                t1.win_amount AS winAmount,
+                t1.tb_status AS settStatus,
+                t2. NAME AS playName
+            FROM
+                order_bet_record t1
+            LEFT JOIN lottery t2 ON t1.lottery_id = t2.lottery_id
+            WHERE
+                t1.user_id = #{userId}
+               AND t1.tb_status = #{settStatus}
+               AND t1.create_time &gt;=  #{startTime}
+               AND t1.create_time &lt;=  #{endTime}
+               order by t1.update_time desc
+               limit #{pageNO},#{pageSize}
+    </select>
+
+
+    <select id="getAeReportDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+         SELECT
+            game_name AS playName,
+            game_id AS gameId,
+            bet AS betAmount,
+            profit AS winAmount,
+            create_time AS createTime,
+            order_no AS orderSn
+        FROM
+            `ae_bet_order`
+        WHERE
+           user_id =#{userId}
+          AND etime &gt;=  #{startTime}
+          AND etime &lt;=  #{endTime}
+          order by update_time desc
+          limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getKyRepotDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+        SELECT
+            kind_name AS playName,
+            kind_id AS kindId,
+            cell_score AS betAmount,
+            profit AS winAmount,
+            create_time AS createTime,
+            game_id AS orderSn
+        FROM
+            `ky_bet_order`
+        WHERE
+            user_id = #{userId}
+          AND game_start_time &gt;=  #{startTime}
+          AND game_start_time &lt;=  #{endTime}
+          order by  game_start_time desc
+         limit #{pageNo},#{pageSize}
+    </select>
+
+
+    <select id="getAgReportDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+     SELECT
+        game_name AS playName,
+        game_type AS gameType,
+        valid_bet_amount AS betAmount,
+        net_amount AS winAmount,
+        create_time AS createTime,
+        bill_no AS orderSn
+    FROM
+        `ag_bet_order`
+    WHERE
+        user_id = #{userId}
+     AND bet_time &gt;=  #{startTime}
+     AND bet_time &lt;=  #{endTime}
+    order by update_time desc
+    </select>
+
+    <select id="getEsRepotDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+       SELECT
+            '电竞游戏' AS playName,
+            t1.total_amount AS betAmount,
+            t1.settlement_amount AS winAmount,
+            t1.settlement_status AS settStatus,
+            t1.create_time AS createTime,
+            t1.es_order_id AS orderSn
+        FROM
+            `es_bet_order` t1,
+            cpt_open_member t2
+        WHERE
+            t1.username = t2.username
+        AND t2.user_id = #{userId}
+        AND t2.type = 'T_ES'
+        AND t1.settlement_time  &gt;= #{startTime}
+        AND t1.settlement_time  &lt;=  #{endTime}
+        order by update_time desc limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getMgRepotDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+    SELECT
+        game_name AS playName,
+        SUM(win_amount) AS winAmount,
+        SUM(bet_amount) AS betAmount,
+        created_at AS createTime,
+        bet_id AS orderSn
+    FROM
+        `mg_bet_order`
+    WHERE
+        user_id = #{userId}
+    and
+      AND created_at &gt;= #{startTime}
+      AND created_at  &lt;=  #{endTime}
+      GROUP BY bet_id  ORDER BY  created_at desc
+       limit #{pageNo},#{pageSize}
+    </select>
+
+
+    <select id="getJdbRepotDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+    SELECT
+        player_id AS playName,
+        SUM(win) AS winAmount,
+        SUM(bet) AS betAmount,
+        last_modify_time AS createTime,
+        seq_no AS orderSn
+    FROM
+        `ag_fish_bet_order`
+    WHERE
+        member_id = #{userId}
+      AND last_modify_time &gt;= #{startTime}
+      and last_modify_time &lt;=  #{endTime}
+      ORDER BY  last_modify_time desc
+      limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getReportDetailByIssua"
+            resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+         SELECT
+            play_id AS playId,
+            setting_id AS settingId,
+            user_id AS userId,
+            issue,
+            play_name AS playName,
+            create_time AS createTime,
+            bet_amount AS betAmount,
+            win_amount AS winAmount,
+            order_sn AS orderSn,
+            bet_number AS betNumber,
+            tb_status AS settStatus,
+            lottery_id AS lotteryId
+        FROM
+            order_bet_record
+        WHERE
+            issue = #{issue}
+         and user_id =#{userId}
+         and lottery_id=#{lotteryId}
+         AND create_time &gt;= #{startTime}
+         and create_time &lt;=  #{endTime}
+    </select>
+
+    <select id="getWinNumberList"
+            resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+        SELECT
+        order_sn AS orderSn,
+        open_number AS openNumber
+        FROM
+        order_record
+        WHERE
+        order_sn IN
+        <foreach close=")" collection="sns" item="orderSn" open="(" separator=",">
+            #{orderSn}
+        </foreach>
+    </select>
+
+
+    <select id="getAgByRepotDetail" resultType="com.caipiao.live.common.model.vo.LotteryReportVo">
+   SELECT
+	game_name AS playName,
+	SUM(earn) AS winAmount,
+	SUM(cost) AS betAmount,
+	creation_time AS createTime,
+	trade_no AS orderSn
+    FROM
+        `ag_fish_bet_order`
+    WHERE
+        member_id = #{userId}
+      AND creation_time &gt;=  #{startTime}
+      and creation_time &lt;=  #{endTime}
+      ORDER BY  creation_time desc
+    limit #{pageNo},#{pageSize}
+    </select>
+
+    <select id="getCountReport"
+            resultType="com.caipiao.live.common.model.dto.order.LotteryReportResponse">
+        SELECT
+        'LOTTERY' AS countType,
+        count(1) AS num,
+        sum(bet_amount) AS sumamt,
+        sum(win_amount) AS winamt
+        FROM (
+        select * from order_bet_record
+        WHERE
+        user_id = #{userId}
+        AND create_time  &gt;= #{startTime}
+        AND create_time  &lt;= #{endTime}
+         ) t1
+        INNER JOIN lottery t2 ON t1.lottery_id = t2.lottery_id
+        UNION ALL
+                SELECT
+                    'AE' AS countType,
+                    count(1) AS num,
+                    sum(bet) AS sumamt,
+                    sum(bet) + sum(profit) AS winamt
+                FROM
+                    `ae_bet_order`
+                WHERE
+                    user_id = #{userId}
+          AND etime &gt;=  #{startTime}
+                AND etime &lt;= #{endTime}
+    UNION ALL
+        SELECT
+            'AG' AS countType,
+            count(1) AS num,
+            sum(valid_bet_amount) AS sumamt,
+            sum(valid_bet_amount) + sum(net_amount) AS winamt
+        FROM
+            `ag_bet_order`
+        WHERE
+            user_id = #{userId}
+       AND bet_time &gt;=  #{startTime}
+         AND bet_time &lt;= #{endTime}
+    UNION ALL
+        SELECT
+            'KY' AS countType,
+            count(1) AS num,
+            sum(cell_score) AS sumamt,
+          sum(cell_score) +  sum(profit) AS winamt
+        FROM
+            `ky_bet_order`
+        WHERE
+            user_id = #{userId}
+        AND game_start_time &gt;=  #{startTime}
+        AND game_start_time &lt;=  #{endTime}
+        UNION ALL
+            SELECT
+                'ES' AS countType,
+                count(1) AS num,
+                sum(total_amount) AS sumamt,
+               sum(total_amount) +  sum(settlement_amount) AS winamt
+            FROM
+                `es_bet_order` t1,
+                cpt_open_member t2
+            WHERE
+                t1.username = t2.username
+            AND t2.user_id = #{userId} AND t2.type = 'T_ES'
+            and t1.settlement_status ='1'
+            AND t1.settlement_time &gt;=  #{startTime}
+        AND t1.settlement_time &lt;=  #{endTime}
+      union all
+        SELECT  'MG' as countType,count(1)/2 as num,sum(bet_amount) as sumamt,sum(bet_amount) + sum(win_amount) as
+            winamt
+            FROM
+                `mg_bet_order`
+            WHERE
+                user_id = #{userId}
+          AND created_at &gt;=  #{startTime}
+          AND created_at &lt;=  #{endTime}
+            UNION ALL
+                SELECT
+                    'AGBY' AS countType,
+                    count(1) AS num,
+                    sum(cost) AS sumamt,
+                    sum(earn) AS winamt
+                FROM
+                    `ag_fish_bet_order`
+                WHERE
+                    member_id = #{userId}
+                AND creation_time &gt;=  #{startTime}
+          and creation_time &lt;=  #{endTime}
+     union all
+            SELECT  'JDB' as countType,count(1) as num,sum(bet) as sumamt, sum(win) as
+                    winamt
+                FROM
+                    `db_bet_order`
+                WHERE
+                    member_id = #{userId}
+                AND last_modify_time &gt;=  #{startTime}
+                and last_modify_time &lt;=  #{endTime}
+    </select>
+</mapper>

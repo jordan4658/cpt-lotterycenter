@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caipiao.live.common.mybatis.mapperext.RestrictMapperExt">
+  
+    <select id="queryRestrictList"  resultType="com.caipiao.live.common.model.vo.lottery.BetRestrictVo">
+	  SELECT
+	  		p.name name,
+			p.lottery_id lotteryId,
+			b.max_money maxMoney,
+			p.id  playId
+		FROM
+			lottery_play p
+			LEFT JOIN lottery_bet_restrict b ON p.play_tag_id = b.play_tag_id
+		WHERE
+			p.lottery_id = #{lotteryId}
+		 <if test="number == 0">		
+			AND p.parent_id != 0
+		 </if>	
+		  <if test="number == 1">		
+			AND p.parent_id = 0
+		 </if>
+		 AND p.is_delete = 0
+		ORDER BY
+	   	 p.id DESC
+  </select>
+</mapper>

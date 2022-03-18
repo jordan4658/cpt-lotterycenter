@@ -1,0 +1,845 @@
+package com.mapper.domain;
+
+import java.io.Serializable;
+
+public class LhcXsRecommend implements Serializable {
+	
+	private Integer godtype;
+	
+	
+	public Integer getGodtype() {
+		return godtype;
+	}
+
+
+
+	public void setGodtype(Integer godtype) {
+		this.godtype = godtype;
+	}
+
+	/**
+     * 字段: lhc_xs_recommend.id<br/>
+     * 主键: 自动增长<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 10<br/>
+     * 说明: 
+     *
+     * @mbggenerated
+     */
+    private Integer id;
+    
+
+    /**
+     * 字段: lhc_xs_recommend.operater<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 操作员账号
+     *
+     * @mbggenerated
+     */
+    private String operater;
+
+    /**
+     * 字段: lhc_xs_recommend.sort<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 序号
+     *
+     * @mbggenerated
+     */
+    private Integer sort;
+
+    /**
+     * 字段: lhc_xs_recommend.referrer<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 推荐人
+     *
+     * @mbggenerated
+     */
+    private String referrer;
+    
+    
+    /**
+     * 字段: lhc_xs_recommend.referrerId<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 推荐人Id
+     *
+     * @mbggenerated
+     */
+    private Integer referrerId;
+
+    /**
+     * 字段: lhc_xs_recommend.type<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 20<br/>
+     * 说明: 类型
+     *
+     * @mbggenerated
+     */
+    private String type;
+
+    /**
+     * 字段: lhc_xs_recommend.title<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 标题
+     *
+     * @mbggenerated
+     */
+    private String title;
+
+    /**
+     * 字段: lhc_xs_recommend.content<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 500<br/>
+     * 说明: 正文
+     *
+     * @mbggenerated
+     */
+    private String content;
+    
+    /**
+     * 字段: lhc_xs_recommend.content<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 500<br/>
+     * 说明: 是否显示二维码
+     *
+     * @mbggenerated
+     */
+    private  Integer qrShow;
+
+    /**
+     * 字段: lhc_xs_recommend.real_views<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 真实的阅读数
+     *
+     * @mbggenerated
+     */
+    private Integer realViews;
+
+    /**
+     * 字段: lhc_xs_recommend.rise_views<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 增加的阅读数
+     *
+     * @mbggenerated
+     */
+    private Integer riseViews;
+    
+    
+    /**
+     * 字段: lhc_xs_recommend.real_admire<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 真实的点赞数
+     *
+     * @mbggenerated
+     */
+    private Integer realAdmire;
+
+    /**
+     * 字段: lhc_xs_recommend.riseAdmire<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 增加的点赞数
+     *
+     * @mbggenerated
+     */
+    private Integer riseAdmire;
+    
+    
+    /**
+     * 字段: lhc_xs_recommend.totalAdmire<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 总点赞数
+     *
+     * @mbggenerated
+     */
+    private Integer totalAdmire;
+    
+    /**
+     * 字段: lhc_xs_recommend.推荐开始的编号Id<br/>
+     * 主键: 自动增长<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 10<br/>
+     * 说明: 
+     *
+     * @mbggenerated
+     */
+    private Integer startId;
+    
+    /**
+     * 字段: lhc_xs_recommend.评论数<br/>
+     * 主键: 自动增长<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 10<br/>
+     * 说明: 
+     *
+     * @mbggenerated
+     */
+    private Integer commentCount;
+    
+    /**
+     * 字段: lhc_xs_recommend.历史排序<br/>
+     * 主键: 自动增长<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 10<br/>
+     * 说明: 
+     *
+     * @mbggenerated
+     */
+    private Integer historySort;
+
+    /**
+     * 字段: lhc_xs_recommend.create_time<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 20<br/>
+     * 说明: 创建时间
+     *
+     * @mbggenerated
+     */
+    private String createTime;
+    
+    
+    private String commentTime;//评论时间
+    
+    
+    
+    
+    
+    
+//    member_id,用戶Id
+//    locked 0否 1.是 默认0
+//    data_sources  数据来源 1.普通用户，2.后台用户
+//    audit_status 审核状态  1.未审核 2.审核通过  3.审核拒绝
+    
+    /**
+     * 字段: lhc_xs_recommend.memberId<br/>
+     * 必填: true<br/>
+     * 长度: 10<br/>
+     * 说明: 用户Id
+     *
+     * @mbggenerated
+     */
+    private Integer memberId;
+    
+    
+    /**
+     * 字段: lhc_xs_recommend.locked<br/>
+     * 必填: true<br/>
+     * 长度: 10<br/>
+     * 说明: 锁住数据（非技术层次而是业务层次）
+     * 0否 1.是 默认0
+     * @mbggenerated
+     */
+    private Integer locked;
+    
+    
+    /**
+     * 字段: lhc_xs_recommend.dataSources<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 数据来源 1.普通用户，2.后台用户
+     *
+     * @mbggenerated
+     */
+    private Integer dataSources;
+    
+    
+    
+    /**
+     * 审核状态  1.未审核 2.审核通过  3.审核拒绝
+     */
+    private Integer auditStatus;
+    
+    
+    
+
+    /**
+     * 字段: lhc_xs_recommend.deleted<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 是否删除
+     *
+     * @mbggenerated
+     */
+    private Integer deleted;
+
+    /**
+     * This field was generated by MyBatis Generator.
+     * This field corresponds to the database table lhc_xs_recommend
+     *
+     * @mbggenerated
+     */
+    private static final long serialVersionUID = 1L;
+
+    /**
+     * @return lhc_xs_recommend.id: 
+     *
+     * @mbggenerated
+     */
+    public Integer getId() {
+        return id;
+    }
+    
+
+
+	/**
+     * 字段: lhc_xs_recommend.id<br/>
+     * 主键: 自动增长<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 10<br/>
+     * 说明: 
+     *
+     * @mbggenerated
+     */
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    /**
+     * @return lhc_xs_recommend.operater: 操作员账号
+     *
+     * @mbggenerated
+     */
+    public String getOperater() {
+        return operater;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.operater<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 操作员账号
+     *
+     * @mbggenerated
+     */
+    public void setOperater(String operater) {
+        this.operater = operater;
+    }
+
+    /**
+     * @return lhc_xs_recommend.sort: 序号
+     *
+     * @mbggenerated
+     */
+    public Integer getSort() {
+        return sort;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.sort<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 序号
+     *
+     * @mbggenerated
+     */
+    public void setSort(Integer sort) {
+        this.sort = sort;
+    }
+
+    /**
+     * @return lhc_xs_recommend.referrer: 推荐人
+     *
+     * @mbggenerated
+     */
+    public String getReferrer() {
+        return referrer;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.referrer<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 推荐人
+     *
+     * @mbggenerated
+     */
+    public void setReferrer(String referrer) {
+        this.referrer = referrer;
+    }
+
+    /**
+     * @return lhc_xs_recommend.type: 类型
+     *
+     * @mbggenerated
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.type<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 20<br/>
+     * 说明: 类型
+     *
+     * @mbggenerated
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return lhc_xs_recommend.title: 标题
+     *
+     * @mbggenerated
+     */
+    public String getTitle() {
+        return title;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.title<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 255<br/>
+     * 说明: 标题
+     *
+     * @mbggenerated
+     */
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    /**
+     * @return lhc_xs_recommend.content: 正文
+     *
+     * @mbggenerated
+     */
+    public String getContent() {
+        return content;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.content<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 500<br/>
+     * 说明: 正文
+     *
+     * @mbggenerated
+     */
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    /**
+     * @return lhc_xs_recommend.real_views: 真实的阅读数
+     *
+     * @mbggenerated
+     */
+    public Integer getRealViews() {
+        return realViews;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.real_views<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 真实的阅读数
+     *
+     * @mbggenerated
+     */
+    public void setRealViews(Integer realViews) {
+        this.realViews = realViews;
+    }
+
+    /**
+     * @return lhc_xs_recommend.rise_views: 增加的阅读数
+     *
+     * @mbggenerated
+     */
+    public Integer getRiseViews() {
+        return riseViews;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.rise_views<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 增加的阅读数
+     *
+     * @mbggenerated
+     */
+    public void setRiseViews(Integer riseViews) {
+        this.riseViews = riseViews;
+    }
+    
+    
+    /**
+     * @return lhc_xs_recommend.real_admire: 真实的点赞数
+     *
+     * @mbggenerated
+     */
+    public Integer getRealAdmire() {
+		return realAdmire;
+	}
+
+    /**
+     * 字段: lhc_xs_recommend.real_admire<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 真实的点赞数
+     *
+     * @mbggenerated
+     */
+	public void setRealAdmire(Integer realAdmire) {
+		this.realAdmire = realAdmire;
+	}
+	/**
+     * @return lhc_xs_recommend.real_admire: 增加的点赞数
+     *
+     * @mbggenerated
+     */
+	public Integer getRiseAdmire() {
+		return riseAdmire;
+	}
+
+	 /**
+     * 字段: lhc_xs_recommend.rise_admire<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 增加的点赞数
+     *
+     * @mbggenerated
+     */
+	public void setRiseAdmire(Integer riseAdmire) {
+		this.riseAdmire = riseAdmire;
+	}
+
+	/**
+     * @return lhc_xs_recommend.create_time: 创建时间
+     *
+     * @mbggenerated
+     */
+    public String getCreateTime() {
+        return createTime;
+    }
+
+    /**
+     * 字段: lhc_xs_recommend.create_time<br/>
+     * 必填: true<br/>
+     * 缺省: <br/>
+     * 长度: 20<br/>
+     * 说明: 创建时间
+     *
+     * @mbggenerated
+     */
+    public void setCreateTime(String createTime) {
+        this.createTime = createTime;
+    }
+
+    /**
+     * @return lhc_xs_recommend.deleted: 是否删除
+     *
+     * @mbggenerated
+     */
+    public Integer getDeleted() {
+        return deleted;
+    }
+
+    
+    
+    public Integer getReferrerId() {
+		return referrerId;
+	}
+
+
+
+	public void setReferrerId(Integer referrerId) {
+		this.referrerId = referrerId;
+	}
+
+
+
+	/**
+     * 字段: lhc_xs_recommend.deleted<br/>
+     * 必填: true<br/>
+     * 缺省: 0<br/>
+     * 长度: 10<br/>
+     * 说明: 是否删除
+     *
+     * @mbggenerated
+     */
+    public void setDeleted(Integer deleted) {
+        this.deleted = deleted;
+    }
+    public Integer getQrShow() {
+		return qrShow;
+	}
+
+	public void setQrShow(Integer qrShow) {
+		this.qrShow = qrShow;
+	}
+	
+	
+
+	public Integer getStartId() {
+		return startId;
+	}
+
+
+
+
+	public void setStartId(Integer startId) {
+		this.startId = startId;
+	}
+
+
+	
+
+
+	public Integer getHistorySort() {
+		return historySort;
+	}
+
+
+	public void setHistorySort(Integer historySort) {
+		this.historySort = historySort;
+	}
+
+
+	public Integer getMemberId() {
+		return memberId;
+	}
+
+
+	public void setMemberId(Integer memberId) {
+		this.memberId = memberId;
+	}
+
+
+	public Integer getLocked() {
+		return locked;
+	}
+
+
+	public void setLocked(Integer locked) {
+		this.locked = locked;
+	}
+
+
+	public Integer getDataSources() {
+		return dataSources;
+	}
+
+
+	public void setDataSources(Integer dataSources) {
+		this.dataSources = dataSources;
+	}
+
+
+	public Integer getAuditStatus() {
+		return auditStatus;
+	}
+
+
+	public void setAuditStatus(Integer auditStatus) {
+		this.auditStatus = auditStatus;
+	}
+
+	
+
+	public Integer getCommentCount() {
+		return commentCount;
+	}
+
+
+
+	public void setCommentCount(Integer commentCount) {
+		this.commentCount = commentCount;
+	}
+
+	
+
+
+	public Integer getTotalAdmire() {
+		return totalAdmire;
+	}
+
+
+
+	public void setTotalAdmire(Integer totalAdmire) {
+		this.totalAdmire = totalAdmire;
+	}
+
+	
+
+
+	public String getCommentTime() {
+		return commentTime;
+	}
+
+
+
+	public void setCommentTime(String commentTime) {
+		this.commentTime = commentTime;
+	}
+
+
+	/**
+     * This method was generated by MyBatis Generator.
+     * This method corresponds to the database table lhc_xs_recommend
+     *
+     * @mbggenerated
+     */
+    @Override
+    public boolean equals(Object that) {
+        if (this == that) {
+            return true;
+        }
+        if (that == null) {
+            return false;
+        }
+        if (getClass() != that.getClass()) {
+            return false;
+        }
+        LhcXsRecommend other = (LhcXsRecommend) that;
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getOperater() == null ? other.getOperater() == null : this.getOperater().equals(other.getOperater()))
+            && (this.getSort() == null ? other.getSort() == null : this.getSort().equals(other.getSort()))
+            && (this.getReferrer() == null ? other.getReferrer() == null : this.getReferrer().equals(other.getReferrer()))
+            && (this.getReferrerId() == null ? other.getReferrerId() == null : this.getReferrerId().equals(other.getReferrerId()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getTitle() == null ? other.getTitle() == null : this.getTitle().equals(other.getTitle()))
+            && (this.getContent() == null ? other.getContent() == null : this.getContent().equals(other.getContent()))
+            && (this.getQrShow() == null ? other.getQrShow() == null : this.getQrShow().equals(other.getQrShow()))
+            && (this.getRealViews() == null ? other.getRealViews() == null : this.getRealViews().equals(other.getRealViews()))
+            && (this.getRiseViews() == null ? other.getRiseViews() == null : this.getRiseViews().equals(other.getRiseViews()))
+            && (this.getRealAdmire() == null ? other.getRealAdmire() == null : this.getRealAdmire().equals(other.getRealAdmire()))
+            && (this.getRiseAdmire() == null ? other.getRiseAdmire() == null : this.getRiseAdmire().equals(other.getRiseAdmire()))
+            && (this.getTotalAdmire() == null ? other.getTotalAdmire() == null : this.getTotalAdmire().equals(other.getTotalAdmire()))
+            && (this.getCommentCount() == null ? other.getCommentCount() == null : this.getCommentCount().equals(other.getCommentCount()))
+            && (this.getStartId() == null ? other.getStartId() == null : this.getStartId().equals(other.getStartId()))
+            && (this.getCommentTime() == null ? other.getCommentTime() == null : this.getCommentTime().equals(other.getCommentTime()))
+            && (this.getCreateTime() == null ? other.getCreateTime() == null : this.getCreateTime().equals(other.getCreateTime()))
+            
+            
+            && (this.getMemberId() == null ? other.getMemberId() == null : this.getMemberId().equals(other.getMemberId()))
+            && (this.getLocked() == null ? other.getLocked() == null : this.getLocked().equals(other.getLocked()))
+            && (this.getDataSources() == null ? other.getDataSources() == null : this.getDataSources().equals(other.getDataSources()))
+            && (this.getAuditStatus() == null ? other.getAuditStatus() == null : this.getAuditStatus().equals(other.getAuditStatus()))
+            
+            
+            && (this.getDeleted() == null ? other.getDeleted() == null : this.getDeleted().equals(other.getDeleted()));
+    }
+
+    /**
+     * This method was generated by MyBatis Generator.
+     * This method corresponds to the database table lhc_xs_recommend
+     *
+     * @mbggenerated
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getOperater() == null) ? 0 : getOperater().hashCode());
+        result = prime * result + ((getSort() == null) ? 0 : getSort().hashCode());
+        result = prime * result + ((getReferrer() == null) ? 0 : getReferrer().hashCode());
+        result = prime * result + ((getReferrerId() == null) ? 0 : getReferrerId().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getTitle() == null) ? 0 : getTitle().hashCode());
+        result = prime * result + ((getContent() == null) ? 0 : getContent().hashCode());
+        result = prime * result + ((getQrShow() == null) ? 0 : getQrShow().hashCode());
+        result = prime * result + ((getRealViews() == null) ? 0 : getRealViews().hashCode());
+        result = prime * result + ((getRiseViews() == null) ? 0 : getRiseViews().hashCode());
+        
+        result = prime * result + ((getRealAdmire() == null) ? 0 : getRealAdmire().hashCode());
+        result = prime * result + ((getRiseAdmire() == null) ? 0 : getRiseAdmire().hashCode());
+        result = prime * result + ((getTotalAdmire() == null) ? 0 : getTotalAdmire().hashCode());
+        
+        result = prime * result + ((getCommentCount() == null) ? 0 : getCommentCount().hashCode());
+        result = prime * result + ((getStartId() == null) ? 0 : getStartId().hashCode());
+        result = prime * result + ((getHistorySort() == null) ? 0 : getHistorySort().hashCode());
+        
+        
+        result = prime * result + ((getCommentTime() == null) ? 0 : getCommentTime().hashCode());
+        result = prime * result + ((getCreateTime() == null) ? 0 : getCreateTime().hashCode());
+        
+        result = prime * result + ((getAuditStatus() == null) ? 0 : getAuditStatus().hashCode());
+        result = prime * result + ((getLocked() == null) ? 0 : getLocked().hashCode());
+        result = prime * result + ((getDataSources() == null) ? 0 : getDataSources().hashCode());
+        result = prime * result + ((getAuditStatus() == null) ? 0 : getAuditStatus().hashCode());
+        result = prime * result + ((getDeleted() == null) ? 0 : getDeleted().hashCode());
+        return result;
+    }
+
+    /**
+     * This method was generated by MyBatis Generator.
+     * This method corresponds to the database table lhc_xs_recommend
+     *
+     * @mbggenerated
+     */
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(getClass().getSimpleName());
+        sb.append(" [");
+        sb.append("Hash = ").append(hashCode());
+        sb.append(", id=").append(id);
+        sb.append(", operater=").append(operater);
+        sb.append(", sort=").append(sort);
+        sb.append(", referrer=").append(referrer);
+        sb.append(", referrerId=").append(referrerId);
+        sb.append(", type=").append(type);
+        sb.append(", title=").append(title);
+        sb.append(", content=").append(content);
+        sb.append(", qrShow=").append(qrShow);
+        sb.append(", realViews=").append(realViews);
+        sb.append(", riseViews=").append(riseViews);
+        sb.append(", realAdmire=").append(realAdmire);
+        sb.append(", riseAdmire=").append(riseAdmire);
+        sb.append(", totalAdmire=").append(totalAdmire);
+        sb.append(", commentCount=").append(commentCount);
+        sb.append(", startId=").append(startId);
+        sb.append(", historySort=").append(historySort);
+        sb.append(", commentTime=").append(commentTime);
+        sb.append(", createTime=").append(createTime);
+        sb.append(", memberId=").append(memberId);
+        sb.append(", locked=").append(locked);
+        sb.append(", dataSources=").append(dataSources);
+        sb.append(", auditStatus=").append(auditStatus);
+        sb.append(", deleted=").append(deleted);
+        sb.append("]");
+        return sb.toString();
+    }
+    
+}

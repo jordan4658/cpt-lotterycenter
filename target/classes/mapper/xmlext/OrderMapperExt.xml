@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.caipiao.live.common.mybatis.mapperext.order.OrderMapperExt">
+    <resultMap id="BaseResultMap" type="com.caipiao.live.common.mybatis.entity.OrderBetRecord">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="order_id" jdbcType="INTEGER" property="orderId"/>
+        <result column="lottery_id" jdbcType="INTEGER" property="lotteryId"/>
+        <result column="play_id" jdbcType="INTEGER" property="playId"/>
+        <result column="play_name" jdbcType="VARCHAR" property="playName"/>
+        <result column="setting_id" jdbcType="INTEGER" property="settingId"/>
+        <result column="bet_number" jdbcType="CHAR" property="betNumber"/>
+        <result column="bet_count" jdbcType="INTEGER" property="betCount"/>
+        <result column="bet_amount" jdbcType="DECIMAL" property="betAmount"/>
+        <result column="win_amount" jdbcType="DECIMAL" property="winAmount"/>
+        <result column="back_amount" jdbcType="DECIMAL" property="backAmount"/>
+        <result column="god_order_id" jdbcType="INTEGER" property="godOrderId"/>
+        <result column="tb_status" jdbcType="CHAR" property="tbStatus"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
+        <result column="is_push" jdbcType="INTEGER" property="isPush"/>
+        <result column="is_delete" jdbcType="BIT" property="isDelete"/>
+        <result column="win_count" jdbcType="VARCHAR" property="winCount"/>
+        <result column="issue" jdbcType="VARCHAR" property="issue"/>
+        <result column="order_sn" jdbcType="VARCHAR" property="orderSn"/>
+        <result column="cate_id" jdbcType="INTEGER" property="cateId"/>
+    </resultMap>
+
+    <select id="countOrderBetList" resultType="java.lang.Integer">
+        SELECT COUNT(ID) FROM lottery_order_bet_record WHERE ISSUE = #{issue} AND
+        LOTTERY_ID = #{lotteryId} AND TB_STATUS = #{status}
+        <if test="playIds != null">
+            AND PLAY_ID IN
+            <foreach collection="playIds" item="playId" separator="," open="(" close=")">
+                #{playId,jdbcType=INTEGER}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="selectOrderBetList" resultMap="BaseResultMap">
+        SELECT ID , USER_ID  , ORDER_ID, LOTTERY_ID , PLAY_ID ,
+        SETTING_ID , BET_NUMBER , PLAY_NAME , BET_COUNT , BET_AMOUNT ,WIN_AMOUNT , BACK_AMOUNT , GOD_ORDER_ID , TB_STATUS,
+        CREATE_TIME CREATETIME, UPDATE_TIME UPDATETIME, IS_PUSH , ISSUE ,
+        WIN_COUNT , IS_DELETE ,ORDER_SN, cate_id  FROM lottery_order_bet_record
+        WHERE  LOTTERY_ID = #{lotteryId}  AND TB_STATUS = #{status}
+        AND ISSUE = #{issue}  AND ID > #{id}
+        <if test="playIds != null">
+            AND PLAY_ID IN
+            <foreach collection="playIds" item="playId" separator="," open="(" close=")">
+                #{playId,jdbcType=INTEGER}
+            </foreach>
+        </if>
+        ORDER BY ID LIMIT #{pageNo},#{pageSize}
+    </select>
+</mapper>

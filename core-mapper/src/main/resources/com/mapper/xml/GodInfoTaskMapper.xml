@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.GodInfoTaskMapper">
+    <select id="getBetOrderListByGods" resultType="com.mapper.domain.OrderBetRecord">
+        select
+        obr.win_amount as winAmount,
+        obr.bet_amount as betAmount
+        FROM order_bet_record obr LEFT JOIN circle_god_push_order cgpo ON obr.id = cgpo.order_bet_id
+        WHERE
+        obr.is_delete=0 AND obr.tb_status in('WIN', 'NO_WIN', 'HE')
+        AND cgpo.god_id = #{godId}
+        <if test="startTime !=null and startTime !='' ">
+            <![CDATA[ and cgpo.create_time  >=  #{startTime}  ]]>
+        </if>
+        <if test="endTime !=null and endTime!='' ">
+            <![CDATA[ and cgpo.create_time <=  #{endTime}  ]]>
+        </if>
+    </select>
+</mapper>
